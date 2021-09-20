@@ -1,12 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# CourseSkeleton
+# INSAcourse
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sdray/CourseSkeleton/main?urlpath=rstudio)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sdray/INSAcourse/main?urlpath=rstudio)
 
-This repository contains the material for the course *An skeleton for my
-course*.
+This repository contains the material for the course *Biostat-5:
+Multivariate analysis*.
 
 ## Contents
 
@@ -40,7 +40,7 @@ optionally [RStudio
 Desktop](https://rstudio.com/products/rstudio/download/).
 
 You can download the compendium as a zip from from this URL:
-[main.zip](https://github.com/sdray/CourseSkeleton/archive/refs/heads/main.zip).
+[main.zip](https://github.com/sdray/INSAcourse/archive/refs/heads/main.zip).
 After unzipping:
 
 -   open the `.Rproj` file in RStudio
@@ -49,14 +49,14 @@ After unzipping:
 
 An alternative is to use the following code in your R session:
 
-`usethis::use_course("sdray/CourseSkeleton", destdir = "~/Bureau/")`
+`usethis::use_course("sdray/INSAcourse", destdir = "~/Bureau/")`
 
 ### How to cite
 
 Please cite this document as:
 
-> Dray, S. (2021). An skeleton for my course . Accessed 20 sept. 2021.
-> Online at <https://github.com/sdray/CourseSkeleton/>
+> Dray, S. (2021). Biostat-5: Multivariate analysis . Accessed 20 sept.
+> 2021. Online at <https://github.com/sdray/INSAcourse/>
 
 ### Licenses
 

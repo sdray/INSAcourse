@@ -1,5 +1,5 @@
 ##Create a new compendium
-my_compendium <- "CourseSkeleton"
+my_compendium <- "INSAcourse"
 dir.create(my_compendium)
 file.create("_devhistory.R")
 rrtools::use_compendium(paste0("../", my_compendium), open = TRUE)
