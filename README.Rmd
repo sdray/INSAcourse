@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 # Please put your title here to include it in the file below.
-Title <- "Biostat-5: Multivariate analysis"
+Title <- "Biostat-4: Multivariate analysis"
 # Replace CourseSkeleton by the name of your repo
 ```
 
