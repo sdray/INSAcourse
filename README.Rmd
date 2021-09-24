@@ -53,6 +53,8 @@ An alternative is to use the following code in your R session:
 
 `usethis::use_course("sdray/INSAcourse", destdir = "~/Bureau/")`
 
+Lastly, a readable version of the course is available [here](http://sdray.github.io/INSAcourse/)
+
 ### How to cite
 
 Please cite this document as:
