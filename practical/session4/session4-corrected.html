@@ -355,6 +355,10 @@ This method is a compromise between PCA and MCA.
 
 # Your turn
 
+Write a report with Rmarkdown
+
+&lt;img src="img/Rmd.png" width="70%" style="display: block; margin: auto;" /&gt;
+
 ---
 # Data
 
@@ -399,7 +403,7 @@ acm1 &lt;- dudi.acm(fenv, scannf = FALSE)
 screeplot(acm1, main = " ", xlab = " ")
 ```
 
-&lt;img src="fig/unnamed-chunk-19-1.svg" width="30%" style="display: block; margin: auto;" /&gt;
+&lt;img src="fig/unnamed-chunk-20-1.svg" width="30%" style="display: block; margin: auto;" /&gt;
 ---
 # Graphical representation of MCA results
 
@@ -410,7 +414,7 @@ screeplot(acm1, main = " ", xlab = " ")
 plot(acm1, col = TRUE)
 ```
 
-&lt;img src="fig/unnamed-chunk-20-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="fig/unnamed-chunk-21-1.svg" style="display: block; margin: auto;" /&gt;
 ---
 # PCA scores on the geographical map
 
@@ -425,7 +429,7 @@ s.value(doubs$xy, acm1$li[, 1:2], pgrid.draw = FALSE,
     col = mypal(2), ppoints.cex = 1)
 ```
 
-&lt;img src="fig/unnamed-chunk-21-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="fig/unnamed-chunk-22-1.svg" style="display: block; margin: auto;" /&gt;
 ---
 # A look to variables
 
@@ -461,7 +465,7 @@ The generic function `score` provides an optimal representation of the maximized
 score(acm1, type = "boxplot")
 ```
 
-&lt;img src="fig/unnamed-chunk-23-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="fig/unnamed-chunk-24-1.svg" style="display: block; margin: auto;" /&gt;
 ---
 # Hill-Smith analysis
 
@@ -483,7 +487,7 @@ hs1 &lt;- dudi.hillsmith(menv, scannf = FALSE)
 score(hs1, type = "boxplot")
 ```
 
-&lt;img src="fig/unnamed-chunk-26-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="fig/unnamed-chunk-27-1.svg" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

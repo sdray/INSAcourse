@@ -247,6 +247,12 @@ This method is a compromise between PCA and MCA.
 
 # Your turn
 
+Write a report with Rmarkdown
+
+```{r, echo = FALSE, out.width="70%"}
+knitr::include_graphics("img/Rmd.png")
+```
+
 ---
 # Data
 

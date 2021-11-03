@@ -107,7 +107,8 @@ utils::sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] adegraphics_1.0-16   ade4_1.7-18          xaringanthemer_0.4.0
+#> [1] MASS_7.3-54          rgl_0.107.17         adegraphics_1.0-16   ade4_1.7-18         
+#> [5] xaringanthemer_0.4.0
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] Rcpp_1.0.7          lubridate_1.7.10    here_1.0.1          lattice_0.20-44    
@@ -115,17 +116,19 @@ utils::sessionInfo()
 #>  [9] utf8_1.2.2          assertthat_0.2.1    rprojroot_2.0.2     digest_0.6.27      
 #> [13] R6_2.5.1            evaluate_0.14       xaringan_0.22       highr_0.9          
 #> [17] pillar_1.6.2        rlang_0.4.11        rstudioapi_0.13     whisker_0.4        
-#> [21] callr_3.7.0         jquerylib_0.1.4     rmarkdown_2.11      desc_1.3.0         
-#> [25] devtools_2.4.2      stringr_1.4.0       compiler_4.1.1      xfun_0.26          
-#> [29] pkgconfig_2.0.3     pkgbuild_1.2.0      htmltools_0.5.2     tibble_3.1.4       
-#> [33] emo_0.0.0.9000      fansi_0.5.0         crayon_1.4.1        showtextdb_3.0     
-#> [37] withr_2.4.2         MASS_7.3-54         grid_4.1.1          jsonlite_1.7.2     
-#> [41] lifecycle_1.0.0     magrittr_2.0.1      formatR_1.11        KernSmooth_2.23-20 
-#> [45] cli_3.0.1           stringi_1.7.4       cachem_1.0.6        fs_1.5.0           
-#> [49] remotes_2.4.0       sp_1.4-5            testthat_3.0.4      latticeExtra_0.6-29
-#> [53] bslib_0.3.0         vctrs_0.3.8         ellipsis_0.3.2      generics_0.1.0     
-#> [57] RColorBrewer_1.1-2  tools_4.1.1         showtext_0.9-4      glue_1.4.2         
-#> [61] purrr_0.3.4         jpeg_0.1-9          processx_3.5.2      pkgload_1.2.2      
-#> [65] fastmap_1.1.0       yaml_2.2.1          sessioninfo_1.1.1   memoise_2.0.0      
-#> [69] knitr_1.34          pagedown_0.15       sass_0.4.0          usethis_2.0.1
+#> [21] callr_3.7.0         jquerylib_0.1.4     pkgdown_1.6.1       rmarkdown_2.11     
+#> [25] desc_1.3.0          devtools_2.4.2      servr_0.23          stringr_1.4.0      
+#> [29] htmlwidgets_1.5.4   httpuv_1.6.3        compiler_4.1.1      xfun_0.26          
+#> [33] pkgconfig_2.0.3     pkgbuild_1.2.0      htmltools_0.5.2     websocket_1.4.1    
+#> [37] tibble_3.1.4        emo_0.0.0.9000      fansi_0.5.0         later_1.3.0        
+#> [41] crayon_1.4.1        showtextdb_3.0      withr_2.4.2         grid_4.1.1         
+#> [45] jsonlite_1.7.2      lifecycle_1.0.0     magrittr_2.0.1      formatR_1.11       
+#> [49] KernSmooth_2.23-20  cli_3.0.1           stringi_1.7.4       cachem_1.0.6       
+#> [53] promises_1.2.0.1    fs_1.5.0            remotes_2.4.0       sp_1.4-5           
+#> [57] testthat_3.0.4      latticeExtra_0.6-29 bslib_0.3.0         vctrs_0.3.8        
+#> [61] ellipsis_0.3.2      generics_0.1.0      RColorBrewer_1.1-2  tools_4.1.1        
+#> [65] showtext_0.9-4      glue_1.4.2          purrr_0.3.4         jpeg_0.1-9         
+#> [69] processx_3.5.2      pkgload_1.2.2       fastmap_1.1.0       yaml_2.2.1         
+#> [73] sessioninfo_1.1.1   memoise_2.0.0       knitr_1.34          pagedown_0.15      
+#> [77] sass_0.4.0          usethis_2.0.1
 ```
