@@ -25,9 +25,21 @@ and practical). The structure of this compendium is as follows:
 
 -   **Session 1**: Introduction to multivariate analysis. Principal
     component analysis.
-    -   Course
+    -   Course 1
         \[[html](course/session1/session1.html)\|[pdf](course/session1/session1.pdf)\|[Rmd](course/session1/session1.Rmd)\]
-        <!-- - Practical [[html](practical/sessionXX/sessionXX.html)|[pdf](practical/sessionXX/sessionXX.pdf)|[Rmd](practical/sessionXX/sessionXX.Rmd)] / Correction [[html](practical/sessionXX/sessionXX-corrected.html)|[pdf](practical/sessionXX/sessionXX-corrected.pdf)] -->
+    -   Practical 1
+    -   Practical 2
+-   **Session 2**: Correspondence Analysis
+    -   Course 2
+    -   Practical 3 - Correspondence Analysis -
+        \[[html](practical/session3/session3.html)\|[pdf](practical/session3/session3.pdf)\|[Rmd](practical/session3/session3.Rmd)\]
+        / Correction
+        \[[html](practical/session3/session3-corrected.html)\|[pdf](practical/session3/session3-corrected.pdf)\]
+    -   Practical 4 - Multiple Correspondence Analysis and Mixed
+        Analysis -
+        \[[html](practical/session4/session4.html)\|[pdf](practical/session4/session4.pdf)\|[Rmd](practical/session4/session4.Rmd)\]
+        / Correction
+        \[[html](practical/session4/session4-corrected.html)\|[pdf](practical/session4/session4-corrected.pdf)\]
 
 ## How to run in your browser or download and run locally
 
@@ -56,7 +68,7 @@ Lastly, a readable version of the course is available
 
 Please cite this document as:
 
-> Dray, S. (2021). Biostat-4: Multivariate analysis . Accessed 24 sept.
+> Dray, S. (2021). Biostat-4: Multivariate analysis . Accessed 03 nov.
 > 2021. Online at <https://github.com/sdray/INSAcourse/>
 
 ### Licenses
@@ -86,19 +98,34 @@ utils::sessionInfo()
 #> LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 #> 
 #> locale:
-#>  [1] LC_CTYPE=fr_FR.UTF-8       LC_NUMERIC=C               LC_TIME=fr_FR.UTF-8        LC_COLLATE=fr_FR.UTF-8    
-#>  [5] LC_MONETARY=fr_FR.UTF-8    LC_MESSAGES=fr_FR.UTF-8    LC_PAPER=fr_FR.UTF-8       LC_NAME=C                 
-#>  [9] LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=fr_FR.UTF-8 LC_IDENTIFICATION=C       
+#>  [1] LC_CTYPE=fr_FR.UTF-8       LC_NUMERIC=C               LC_TIME=fr_FR.UTF-8       
+#>  [4] LC_COLLATE=fr_FR.UTF-8     LC_MONETARY=fr_FR.UTF-8    LC_MESSAGES=fr_FR.UTF-8   
+#>  [7] LC_PAPER=fr_FR.UTF-8       LC_NAME=C                  LC_ADDRESS=C              
+#> [10] LC_TELEPHONE=C             LC_MEASUREMENT=fr_FR.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> attached base packages:
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
+#> other attached packages:
+#> [1] adegraphics_1.0-16   ade4_1.7-18          xaringanthemer_0.4.0
+#> 
 #> loaded via a namespace (and not attached):
-#>  [1] knitr_1.34        magrittr_2.0.1    usethis_2.0.1     devtools_2.4.2    pkgload_1.2.2     here_1.0.1       
-#>  [7] R6_2.5.1          rlang_0.4.11      fastmap_1.1.0     stringr_1.4.0     tools_4.1.1       pkgbuild_1.2.0   
-#> [13] xfun_0.26         sessioninfo_1.1.1 cli_3.0.1         withr_2.4.2       htmltools_0.5.2   ellipsis_0.3.2   
-#> [19] remotes_2.4.0     yaml_2.2.1        digest_0.6.27     rprojroot_2.0.2   lifecycle_1.0.0   crayon_1.4.1     
-#> [25] processx_3.5.2    purrr_0.3.4       callr_3.7.0       fs_1.5.0          ps_1.6.0          testthat_3.0.4   
-#> [31] glue_1.4.2        memoise_2.0.0     cachem_1.0.6      evaluate_0.14     rmarkdown_2.11    stringi_1.7.4    
-#> [37] compiler_4.1.1    desc_1.3.0        prettyunits_1.1.1 pagedown_0.15
+#>  [1] Rcpp_1.0.7          lubridate_1.7.10    here_1.0.1          lattice_0.20-44    
+#>  [5] prettyunits_1.1.1   png_0.1-7           sysfonts_0.8.5      ps_1.6.0           
+#>  [9] utf8_1.2.2          assertthat_0.2.1    rprojroot_2.0.2     digest_0.6.27      
+#> [13] R6_2.5.1            evaluate_0.14       xaringan_0.22       highr_0.9          
+#> [17] pillar_1.6.2        rlang_0.4.11        rstudioapi_0.13     whisker_0.4        
+#> [21] callr_3.7.0         jquerylib_0.1.4     rmarkdown_2.11      desc_1.3.0         
+#> [25] devtools_2.4.2      stringr_1.4.0       compiler_4.1.1      xfun_0.26          
+#> [29] pkgconfig_2.0.3     pkgbuild_1.2.0      htmltools_0.5.2     tibble_3.1.4       
+#> [33] emo_0.0.0.9000      fansi_0.5.0         crayon_1.4.1        showtextdb_3.0     
+#> [37] withr_2.4.2         MASS_7.3-54         grid_4.1.1          jsonlite_1.7.2     
+#> [41] lifecycle_1.0.0     magrittr_2.0.1      formatR_1.11        KernSmooth_2.23-20 
+#> [45] cli_3.0.1           stringi_1.7.4       cachem_1.0.6        fs_1.5.0           
+#> [49] remotes_2.4.0       sp_1.4-5            testthat_3.0.4      latticeExtra_0.6-29
+#> [53] bslib_0.3.0         vctrs_0.3.8         ellipsis_0.3.2      generics_0.1.0     
+#> [57] RColorBrewer_1.1-2  tools_4.1.1         showtext_0.9-4      glue_1.4.2         
+#> [61] purrr_0.3.4         jpeg_0.1-9          processx_3.5.2      pkgload_1.2.2      
+#> [65] fastmap_1.1.0       yaml_2.2.1          sessioninfo_1.1.1   memoise_2.0.0      
+#> [69] knitr_1.34          pagedown_0.15       sass_0.4.0          usethis_2.0.1
 ```

@@ -249,7 +249,7 @@ addvar3d(t(pca2$l1), col = 'red')
 
 .pull-right[
 ```{r, echo = FALSE}
-s.arrow(pca2$li)
+s.arrow(pca2$co)
 ```
 ]
 ---
