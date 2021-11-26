@@ -43,7 +43,9 @@ The directory contains the material for the different sessions (course and pract
     - Practical 4 - Multiple Correspondence Analysis and Mixed Analysis - [[html](practical/session4/session4.html)|[pdf](practical/session4/session4.pdf)|[Rmd](practical/session4/session4.Rmd)] / Correction [[html](practical/session4/session4-corrected.html)|[pdf](practical/session4/session4-corrected.pdf)]
 
 * **Session 3**: Two-table analysis.
-    - Course 1 [[html](course/session3/session3.html)|[pdf](course/session3/session3.pdf)|[Rmd](course/session3/session3.Rmd)]
+    - Course 3 [[html](course/session3/session3.html)|[pdf](course/session3/session3.pdf)|[Rmd](course/session3/session3.Rmd)]
+    - Practical 5
+    - Practical 6 - Two-table methods - [[html](practical/session6/session6.html)|[pdf](practical/session6/session6.pdf)|[Rmd](practical/session6/session6.Rmd)]
 
 ## How to run in your browser or download and run locally
 
