@@ -46,7 +46,7 @@ and practical). The structure of this compendium is as follows:
     -   Practical 5
     -   Practical 6 - Two-table methods -
         \[[html](practical/session6/session6.html)\|[pdf](practical/session6/session6.pdf)\|[Rmd](practical/session6/session6.Rmd)\]
--   **Session 4**: Distanbces matrices
+-   **Session 4**: Distances matrices
     -   Course 4
     -   Practical 7 - Raw-data and distance based methods -
         \[[html](practical/session7/session7.html)\|[pdf](practical/session7/session7.pdf)\|[Rmd](practical/session7/session7.Rmd)\]
