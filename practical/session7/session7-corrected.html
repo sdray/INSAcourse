@@ -201,7 +201,7 @@ var(x) * 9/10
 ```
 
 ```
-## [1] 0.7100599
+## [1] 1.671368
 ```
 
 ```r
@@ -209,7 +209,7 @@ sum(as.matrix(dist(x))^2)/(2 * 10^2)
 ```
 
 ```
-## [1] 0.7100599
+## [1] 1.671368
 ```
 
 When using Euclidean distance, several raw- and distance-based analysis would produce the same results. 
@@ -234,6 +234,32 @@ When using Euclidean distances, we have:
 - Permutational Distance-based Multivariate Analysis of Variance &lt;span style="color:#F97B64"&gt; `\(\Leftrightarrow\)` &lt;/span&gt; Permutation test of Between-Class Analysis
 ---
 
+```r
+## Answer 2
+library(ade4)
+library(adegraphics)
+data(meaudret)
+## Answer 3
+pca.meau &lt;- dudi.pca(meaudret$spe, scale = FALSE, scannf = FALSE)
+pco.meau &lt;- dudi.pco(dist(meaudret$spe), scannf = FALSE)
+pca.meau$eig - pco.meau$eig  ## Equivalence between the two analyses
+## Answer 4
+meau01 &lt;- ifelse(meaudret$spe &gt; 0, 1, 0)
+pco.meau1 &lt;- dudi.pco(dist(meau01), scannf = FALSE)
+pco.meau2 &lt;- dudi.pco(dist.binary(meau01, method = 1),
+    scannf = FALSE)
+cbindADEg(s.class(pco.meau1$li, meaudret$design$season,
+    col = TRUE), s.class(pco.meau2$li, meaudret$design$season,
+    col = TRUE))
+## Answer 5
+bca1 &lt;- bca(pco.meau, meaudret$design$season, scannf = FALSE)
+dbrda1 &lt;- vegan::dbrda(dist(meaudret$spe) ~ meaudret$design$season)
+dbrda1$CCA$eig * (nrow(meaudret$spe) - 1)/nrow(meaudret$spe) -
+    bca1$eig  ## Equivalence between the two analyses
+## Answer 6
+vegan::adonis(dist(meaudret$spe) ~ meaudret$design$season)
+randtest(bca1)
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
