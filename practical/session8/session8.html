@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Raw-data and distance based methods</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Stéphane Dray" />
+    <meta name="date" content="2022-01-07" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Raw-data and distance based methods
+## in practice
+### Stéphane Dray
+### 2022-01-07
+
+---
+
+
+
+
+
+
+
+
+
+`$$\newcommand{\tr}{\hspace{-0.05cm}^{\top}\hspace{-0.05cm}} % transpose d'une matrice$$`
+
+`$$\newcommand{\mb}[1]{\mathbf{#1}}$$`
+
+`$$\newcommand{\sqnorm}[2]{
+ \left \|  #1  \right \|^2_{#2}
+}$$`
+
+`$$\newcommand{\norm}[2]{
+ \left \| #1 \right \|_{#2}
+}$$`
+
+
+---
+## Raw data
+
+.column-left[
+.center[
+
+![alt text](img/X.png)
+#### Principal Component Analysis
+
+]
+]
+
+.column-center[
+.center[
+![alt text](img/YX.png)
+#### Co-Inertia Analysis
+
+]
+]
+.column-right[
+.center[
+
+![alt text](img/Xgroup.png)
+#### Between-Class Analysis
+
+
+]
+]
+
+---
+## Distances
+
+.column-left[
+.center[
+
+&lt;img src="img/DX.png" width="252" height="80%" style="display: block; margin: auto;" /&gt;
+#### Principal Coordinates Analysis
+
+]
+]
+
+.column-center[
+.center[
+&lt;img src="img/DYX.png" width="412" height="80%" style="display: block; margin: auto;" /&gt;
+#### Distance-Based Redundancy Analysis
+&lt;br&gt;
+&lt;img src="img/DYDX.png" width="489" height="80%" style="display: block; margin: auto;" /&gt;
+#### Mantel test
+]
+]
+.column-right[
+.center[
+
+&lt;img src="img/DXgroup.png" width="329" height="80%" style="display: block; margin: auto;" /&gt;
+#### dbRDA, ANOSIM
+
+
+]
+]
+
+---
+## Distance vs Raw
+- Distances can be directly measured or inherited from raw-data
+.pull-left[
+&lt;img src="img/waze.jpeg" width="50%" height="50%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="img/crow.png" width="80%" height="80%" style="display: block; margin: auto;" /&gt;
+]
+---
+## Distance vs Raw
+- Raw-data methods produce information on both individuals and variables when distance-based methods focus only on individuals
+
+```r
+library(ade4)
+library(adegraphics)
+data(doubs)
+pca &lt;- dudi.pca(doubs$env, scannf = FALSE)
+pco &lt;- dudi.pco(dist(scale(doubs$env)), scannf = FALSE)
+```
+.pull-left[
+
+```r
+scatter(pca, main = "PCA")
+```
+
+&lt;img src="fig/unnamed-chunk-9-1.svg" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left[
+
+```r
+scatter(pco, main = "PCO")
+```
+
+&lt;img src="fig/unnamed-chunk-10-1.svg" width="60%" style="display: block; margin: auto;" /&gt;
+]
+---
+## Distance vs Raw
+- Distance-based methods allow for more flexibility and can be more suitable in some contexts
+
+
+
+```r
+x
+```
+
+```
+##        species 1 species 2 species 3 species 4
+## site 1         1         1         0         1
+## site 2         0         0         0         1
+## site 3         1         1         1         1
+## site 4         0         0         1         1
+```
+
+.pull-left[
+
+```r
+## Euclidean
+round(dist(x), 2)
+```
+
+```
+##        site 1 site 2 site 3
+## site 2   1.41              
+## site 3   1.00   1.73       
+## site 4   1.73   1.00   1.41
+```
+]
+.pull-right[
+
+```r
+## Jaccard
+round(dist.binary(x, method = 1), 2)
+```
+
+```
+##        site 1 site 2 site 3
+## site 2   0.82              
+## site 3   0.50   0.87       
+## site 4   0.87   0.71   0.71
+```
+]
+
+Sites 3-4 are closer than sites 1-2 when considering only presences as a measure of similarity
+---
+## Distance vs Raw
+- In some cases, both approaches can be equivalent (Euclidean distances)
+
+For the univariate case, Euclidean distance is `\(d_{ij}=\sqrt{(x_i-x_j)^2}\)` and we have:
+
+
+`$$var(\mathbf{x}) = \frac{1}{n}\sum_{i=1}^{n}{(x_i-\bar{x})^2}=\frac{1}{2n^2}\sum_{i=1}^{n}\sum_{j=1}^{n}{d_{ij}^2}$$`
+
+```r
+x &lt;- rnorm(10)
+var(x) * 9/10
+```
+
+```
+## [1] 0.7100599
+```
+
+```r
+sum(as.matrix(dist(x))^2)/(2 * 10^2)
+```
+
+```
+## [1] 0.7100599
+```
+
+When using Euclidean distance, several raw- and distance-based analysis would produce the same results. 
+---
+## Your turn
+1. Create an Rmd file
+2. Load the `meaudret` data set from `ade4`
+3. Perform the principal component analysis (`dudi.pca`) and principal coordinates analysis (`dudi.pco`) using Euclidean distances (`dist`) on faunistic data. Compare the outputs and conclude.
+4. Transform the data into presence-absence (`ifelse(meaudret$spe&gt;0, 1, 0)`). Peform principal coordinates analysis (`dudi.pco`) using Euclidean (`dist`) and Jaccard distances (`dist.binary`). Compare the results.
+5. Perform the between-class analysis (`bca`) and distance-based RDA (`vegan::dbrda`) using Euclidean distances using the factor `meaudret$design$season` as an exploratory variable. Compare the results (be aware that `vegan` use `\(\frac{1}{n-1}\)` to compute variances while `ade4` uses `\(\frac{1}{n}\)`).
+6. Look at the percentage of variation explained by the between-class analysis (stored in the object). Perform permutational multivariate analysis of variance with the function `vegan::adonis` using the Euclidean distances. Compare
+
+---
+## Summary
+
+When using Euclidean distances, we have:
+&lt;br&gt;&lt;br&gt;
+- Principal Coordinates Analysis &lt;span style="color:#F97B64"&gt; `\(\Leftrightarrow\)` &lt;/span&gt;   Principal Component Analysis
+&lt;br&gt;&lt;br&gt;
+- Distance-based Redundancy Analysis &lt;span style="color:#F97B64"&gt; `\(\Leftrightarrow\)` &lt;/span&gt; Redundancy Analysis (Between-Class Analysis when a single factor is used as explanatory variable)
+&lt;br&gt;&lt;br&gt;
+- Permutational Distance-based Multivariate Analysis of Variance &lt;span style="color:#F97B64"&gt; `\(\Leftrightarrow\)` &lt;/span&gt; Permutation test of Between-Class Analysis
+---
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

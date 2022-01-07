@@ -47,6 +47,11 @@ The directory contains the material for the different sessions (course and pract
     - Practical 5
     - Practical 6 - Two-table methods - [[html](practical/session6/session6.html)|[pdf](practical/session6/session6.pdf)|[Rmd](practical/session6/session6.Rmd)]
 
+* **Session 4**: Distanbces matrices
+    - Course 4
+    - Practical 7
+    - Practical 8 - Raw-data and distance based methods - [[html](practical/session8/session8.html)|[pdf](practical/session8/session8.pdf)|[Rmd](practical/session8/session8.Rmd)] / Correction [[html](practical/session8/session8-corrected.html)|[pdf](practical/session8/session8-corrected.pdf)]
+    
 ## How to run in your browser or download and run locally
 
 This course has been developed using the statistical programming
