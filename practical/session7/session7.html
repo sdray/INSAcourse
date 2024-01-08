@@ -4,7 +4,7 @@
     <title>Raw-data and distance based methods</title>
     <meta charset="utf-8" />
     <meta name="author" content="Stéphane Dray" />
-    <meta name="date" content="2022-01-07" />
+    <meta name="date" content="2024-01-08" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="custom.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -13,10 +13,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Raw-data and distance based methods
+]
+.subtitle[
 ## in practice
+]
+.author[
 ### Stéphane Dray
-### 2022-01-07
+]
+.date[
+### 2024-01-08
+]
 
 ---
 
@@ -201,7 +209,7 @@ var(x) * 9/10
 ```
 
 ```
-## [1] 0.4947034
+## [1] 0.8787088
 ```
 
 ```r
@@ -209,7 +217,7 @@ sum(as.matrix(dist(x))^2)/(2 * 10^2)
 ```
 
 ```
-## [1] 0.4947034
+## [1] 0.8787088
 ```
 
 When using Euclidean distance, several raw- and distance-based analysis would produce the same results. 
@@ -281,6 +289,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
