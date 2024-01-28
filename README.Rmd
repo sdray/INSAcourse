@@ -48,7 +48,7 @@ The directory contains the material for the different sessions (course and pract
     - Practical 6 - Two-table methods - [[html](practical/session6/session6.html)|[pdf](practical/session6/session6.pdf)|[Rmd](practical/session6/session6.Rmd)]
 
 * **Session 4**: Distances matrices
-    - Course 4
+    - Course 4 [[html](course/session4/session4.html)|[pdf](course/session4/session4.pdf)|[Rmd](course/session4/session4.Rmd)]
     - Practical 7 - Raw-data and distance based methods - [[html](practical/session7/session7.html)|[pdf](practical/session7/session7.pdf)|[Rmd](practical/session7/session7.Rmd)] / Correction [[html](practical/session7/session7-corrected.html)|[pdf](practical/session7/session7-corrected.pdf)]
     - Practical 8
     
