@@ -4,7 +4,7 @@
     <title>Methods for distance</title>
     <meta charset="utf-8" />
     <meta name="author" content="Stéphane Dray" />
-    <meta name="date" content="2024-01-28" />
+    <meta name="date" content="2026-01-19" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="custom.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 ### Stéphane Dray
 ]
 .date[
-### 2024-01-28
+### 2026-01-19
 ]
 
 ---
@@ -71,7 +71,7 @@ $$
 class:
 # Introduction
 
-```r
+``` r
 library(ade4)
 library(adegraphics)
 adegpar(paxes.draw = TRUE, pbackground.col = "lightgrey",
@@ -213,7 +213,7 @@ XX}}^t$$`
 ## What about non-euclidean distances
 
 
-```r
+``` r
 geo &lt;- as.dist(yanomama$geo)
 is.euclid(geo)
 ```
@@ -236,7 +236,7 @@ Some solutions:
 ## PCoA in practice
 
 
-```r
+``` r
 geo &lt;- quasieuclid(geo)
 pco.geo &lt;- dudi.pco(geo, scan = F)
 s.label(pco.geo$li, plabel.optim = TRUE)
@@ -251,7 +251,7 @@ s.label(pco.geo$li, plabel.optim = TRUE)
 Is there a link between spatial distances and allelic distances ?
 
 
-```r
+``` r
 plot(yanomama$gen ~ yanomama$geo, pch = 15)
 ```
 
@@ -265,7 +265,7 @@ Permutation-based testing procedure based on linear correlation (Pearson's). Can
 .pull-left[
 
 
-```r
+``` r
 gen &lt;- quasieuclid(as.dist(yanomama$gen))
 m1 &lt;- mantel.randtest(gen, geo)
 m1
@@ -278,17 +278,17 @@ m1
 ## Observation: 0.5095199 
 ## 
 ## Based on 999 replicates
-## Simulated p-value: 0.003 
+## Simulated p-value: 0.004 
 ## Alternative hypothesis: greater 
 ## 
-##     Std.Obs Expectation    Variance 
-## 3.106564135 0.001964964 0.026693498
+##      Std.Obs  Expectation     Variance 
+##  3.301290591 -0.002675429  0.024071533
 ```
 ]
 
 .pull-right[
 
-```r
+``` r
 plot(m1)
 ```
 
@@ -303,13 +303,13 @@ plot(m1)
 
 
 
-```r
+``` r
 pco.gen &lt;- dudi.pco(gen, scan = F)
 ```
 
 .pull-left[
 
-```r
+``` r
 s.label(pco.geo$li, plabel.optim = TRUE)
 ```
 
@@ -318,7 +318,7 @@ s.label(pco.geo$li, plabel.optim = TRUE)
 ]
 .pull-right[
 
-```r
+``` r
 s.label(pco.gen$li, plabel.optim = TRUE)
 ```
 
@@ -331,7 +331,7 @@ s.label(pco.gen$li, plabel.optim = TRUE)
 ## Fit the configurations of points
 
 
-```r
+``` r
 s.match(pco.geo$li, pco.gen$li, plabel.optim = TRUE)
 ```
 
@@ -343,7 +343,7 @@ s.match(pco.geo$li, pco.gen$li, plabel.optim = TRUE)
 ## Rotate, reflect
 
 
-```r
+``` r
 coi &lt;- coinertia(pco.geo, pco.gen, scannf = FALSE)
 plot(coi)
 ```
@@ -355,7 +355,7 @@ plot(coi)
 ## RV coefficient
 
 
-```r
+``` r
 RV.randtest(pco.geo$li, pco.gen$li)
 ```
 
@@ -370,7 +370,7 @@ RV.randtest(pco.geo$li, pco.gen$li)
 ## Alternative hypothesis: greater 
 ## 
 ##     Std.Obs Expectation    Variance 
-## 5.728076144 0.106374766 0.005036284
+## 5.910665783 0.105023185 0.004761438
 ```
 
 ---
@@ -379,9 +379,9 @@ RV.randtest(pco.geo$li, pco.gen$li)
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

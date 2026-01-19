@@ -4,7 +4,7 @@
     <title>Two-table methods</title>
     <meta charset="utf-8" />
     <meta name="author" content="Stéphane Dray" />
-    <meta name="date" content="2024-01-08" />
+    <meta name="date" content="2026-01-19" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="custom.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 ### Stéphane Dray
 ]
 .date[
-### 2024-01-08
+### 2026-01-19
 ]
 
 ---
@@ -119,7 +119,7 @@ A compromise between canonical correlation analysis, and the two PCAs:
 ## Perform the analysis
 
 
-```r
+``` r
 library(ade4)
 library(adegraphics)
 data(doubs)
@@ -132,7 +132,7 @@ pca_env &lt;- dudi.pca(doubs$env, scannf = FALSE)
 ## Test the significance of the link
 .pull-left[
 
-```r
+``` r
 rt.coi &lt;- randtest(coi)
 plot(rt.coi)
 ```
@@ -141,7 +141,7 @@ plot(rt.coi)
 ]
 .pull-right[
 
-```r
+``` r
 rt.coi
 ```
 
@@ -163,7 +163,7 @@ rt.coi
 ---
 ## Have a look to the summary
 
-```r
+``` r
 summary(coi)
 ```
 
@@ -189,13 +189,13 @@ summary(coi)
 ## Plot the results
 
 
-```r
+``` r
 g1 &lt;- plot(coi)
 ```
 
 &lt;img src="fig/unnamed-chunk-7-1.svg" style="display: block; margin: auto;" /&gt;
 
-```r
+``` r
 names(g1)
 ```
 
@@ -207,7 +207,7 @@ names(g1)
 ## Loadings for variables
 .pull-left[
 
-```r
+``` r
 g1$Xloadings
 ```
 
@@ -217,7 +217,7 @@ g1$Xloadings
 ]
 .pull-right[
 
-```r
+``` r
 g1$Yloadings
 ```
 
@@ -229,7 +229,7 @@ g1$Yloadings
 ## Scores for individuals
 
 
-```r
+``` r
 g1$XYmatch
 ```
 
@@ -262,7 +262,7 @@ This framework encompasses:
 ### Redundancy Analysis (RDA)
 
 
-```r
+``` r
 pca_fish &lt;- dudi.pca(doubs$fish, scale = FALSE, scannf = FALSE)
 *rda1 &lt;- pcaiv(pca_fish, doubs$env, scannf = FALSE)
 ```
@@ -271,7 +271,7 @@ pca_fish &lt;- dudi.pca(doubs$fish, scale = FALSE, scannf = FALSE)
 ## Test the significance of the link
 .pull-left[
 
-```r
+``` r
 rt.rda &lt;- randtest(rda1)
 plot(rt.rda)
 ```
@@ -280,7 +280,7 @@ plot(rt.rda)
 ]
 .pull-right[
 
-```r
+``` r
 rt.rda
 ```
 
@@ -301,7 +301,7 @@ rt.rda
 ---
 ## Have a look to the summary
 
-```r
+``` r
 summary(rda1)
 ```
 
@@ -327,13 +327,13 @@ summary(rda1)
 ## Plot the results
 
 
-```r
+``` r
 g2 &lt;- plot(rda1)
 ```
 
 &lt;img src="fig/unnamed-chunk-15-1.svg" style="display: block; margin: auto;" /&gt;
 
-```r
+``` r
 names(g2)
 ```
 
@@ -344,7 +344,7 @@ names(g2)
 ---
 ## Loadings for variables of Y
 
-```r
+``` r
 g2$Ycol
 ```
 
@@ -355,7 +355,7 @@ g2$Ycol
 ## Scores for individuals
 
 
-```r
+``` r
 g2$XYmatch
 ```
 
@@ -367,7 +367,7 @@ g2$XYmatch
 ## Variables of X
 .pull-left[
 
-```r
+``` r
 g2$Xloadings
 ```
 
@@ -377,7 +377,7 @@ coefficients (loadings) for the variables of `\(\mb{X}\)` (`rda1$fa`)
 ]
 .pull-right[
 
-```r
+``` r
 g2$Xcor
 ```
 
@@ -407,23 +407,23 @@ correlation with the variables of `\(\mb{X}\)` (`rda1$cor`)
 
 * In co-inertia analysis, be careful with row weights:
 
-```r
+``` r
 coa_fish &lt;- dudi.pca(doubs$fish, scale = FALSE, scannf = FALSE)
 *pca_env &lt;- dudi.pca(doubs$env, scannf = FALSE, row.w = coa_fish$lw)
 coi &lt;- coinertia(coa_fish, pca_env, scannf = FALSE)
 ```
 * Canonical correspondence analysis is simply:
 
-```r
+``` r
 cca1 &lt;- pcaiv(coa_fish, doubs$env, scannf = FALSE)
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

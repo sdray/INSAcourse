@@ -4,7 +4,7 @@
     <title>Correspondence Analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Stéphane Dray" />
-    <meta name="date" content="2024-01-08" />
+    <meta name="date" content="2026-01-19" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="custom.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 ### Stéphane Dray
 ]
 .date[
-### 2024-01-08
+### 2026-01-19
 ]
 
 ---
@@ -75,7 +75,7 @@ $$
 We consider the relationship between hair and eyes colors measured on 592 students in Delaware University.
 
 
-```r
+``` r
 mydata &lt;- read.table("http://pbil.univ-lyon1.fr/R/donnees/snee74.txt",
     header = TRUE, stringsAsFactors = TRUE)
 names(mydata)
@@ -85,7 +85,7 @@ names(mydata)
 ## [1] "cheveux" "yeux"    "sexe"
 ```
 
-```r
+``` r
 head(mydata)
 ```
 
@@ -105,7 +105,7 @@ head(mydata)
 A qualitative variables is stored as `factor` with different categories (`levels`)
 
 
-```r
+``` r
 is.factor(mydata$yeux)
 ```
 
@@ -113,7 +113,7 @@ is.factor(mydata$yeux)
 ## [1] TRUE
 ```
 
-```r
+``` r
 levels(mydata$yeux)
 ```
 
@@ -127,7 +127,7 @@ levels(mydata$yeux)
 * Compute the vector with the number of individuals for each eye color category and display the results on a plot.
 
 
-```r
+``` r
 summary(mydata$yeux)
 ```
 
@@ -136,7 +136,7 @@ summary(mydata$yeux)
 ##      215      220       93       64
 ```
 
-```r
+``` r
 plot(mydata$yeux)
 ```
 
@@ -148,13 +148,13 @@ plot(mydata$yeux)
 * Build the contingency table crossing hair and eyes colors. See `?table`
 
 
-```r
+``` r
 mytab &lt;- table(mydata$cheveux, mydata$yeux)
 ```
 
 * Compute row and columns marginal relative frequencies
 
-```r
+``` r
 rowSums(mytab)/sum(mytab)
 ```
 
@@ -163,7 +163,7 @@ rowSums(mytab)/sum(mytab)
 ## 0.2145270 0.4831081 0.1824324 0.1199324
 ```
 
-```r
+``` r
 colSums(mytab)/sum(mytab)
 ```
 
@@ -176,7 +176,7 @@ colSums(mytab)/sum(mytab)
 
 * Compute and interpret the results of a `\(\chi^2\)` test
 
-```r
+``` r
 chisq.test(mytab)
 ```
 
@@ -193,7 +193,7 @@ chisq.test(mytab)
 * Display and interpret the associations between categories with `mosaicplot`
 
 
-```r
+``` r
 mosaicplot(mytab, shade = TRUE)
 ```
 
@@ -217,7 +217,7 @@ what would be the best way to display eyes colors?
 * Assign a random score to hair colors
 
 
-```r
+``` r
 set.seed(12)
 score.h &lt;- rnorm(4)
 ```
@@ -225,7 +225,7 @@ score.h &lt;- rnorm(4)
 * Compute the position for the eye color 'Vert'
 
 
-```r
+``` r
 sum(score.h * mytab[, 4]/sum(mytab[, 4]))
 ```
 
@@ -233,7 +233,7 @@ sum(score.h * mytab[, 4]/sum(mytab[, 4]))
 ## [1] 0.06851621
 ```
 
-```r
+``` r
 ## or
 
 weighted.mean(score.h, w = mytab[, 4])
@@ -249,7 +249,7 @@ weighted.mean(score.h, w = mytab[, 4])
 
 By repeating the same formulas
 
-```r
+``` r
 score.e &lt;- sapply(1:4, function(x) sum(score.h * mytab[,
     x]/sum(mytab[, x])))
 ```
@@ -258,7 +258,7 @@ score.e &lt;- sapply(1:4, function(x) sum(score.h * mytab[,
 or using matrix algebra
 
 
-```r
+``` r
 t(prop.table(mytab, 2)) %*% score.h
 ```
 
@@ -286,7 +286,7 @@ then
 * Start from a random score for eyes colors to position hair colors by averaging
 
 
-```r
+``` r
 set.seed(13)
 score.e &lt;- rnorm(4)
 prop.table(mytab, 1) %*% score.e
@@ -317,7 +317,7 @@ The solution of the iterative algorithm can also be obtained by the diagonalizat
 
 
 
-```r
+``` r
 library(ade4)
 coa1 &lt;- dudi.coa(unclass(mytab), scannf = FALSE)
 ```
@@ -325,7 +325,7 @@ coa1 &lt;- dudi.coa(unclass(mytab), scannf = FALSE)
 * Check the link between `\(\chi^2\)` statistic and total inertia
 
 
-```r
+``` r
 sum(coa1$eig)
 ```
 
@@ -333,7 +333,7 @@ sum(coa1$eig)
 ## [1] 0.2335977
 ```
 
-```r
+``` r
 chisq.test(mytab)$statistic/sum(mytab)
 ```
 
@@ -353,7 +353,7 @@ chisq.test(mytab)$statistic/sum(mytab)
 * Check both results
 
 
-```r
+``` r
 prop.table(mytab, 1) %*% coa1$c1[, 1]
 ```
 
@@ -366,7 +366,7 @@ prop.table(mytab, 1) %*% coa1$c1[, 1]
 ##   Roux   -0.1295233
 ```
 
-```r
+``` r
 coa1$li[, 1]
 ```
 
@@ -380,7 +380,7 @@ coa1$li[, 1]
 * Represent and interpret the results using the `scatter` function (check the `method` argument of `scatter.coa`)
 
 
-```r
+``` r
 scatter(coa1, method = 2)
 ```
 
@@ -392,14 +392,14 @@ scatter(coa1, method = 2)
 * Use the `inertia.dudi` function to compute inertia statistics for rows and columns
 
 
-```r
+``` r
 ic = inertia.dudi(coa1, row.inertia = TRUE, col.inertia = TRUE)
 ```
 
 * Represent absolute contributions using the `plot` function (see `?plot.inertia`)
 
 
-```r
+``` r
 plot(ic, contrib = "abs")
 ```
 
@@ -408,9 +408,9 @@ plot(ic, contrib = "abs")
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

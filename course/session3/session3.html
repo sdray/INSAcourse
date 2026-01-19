@@ -4,7 +4,7 @@
     <title>Two-table methods</title>
     <meta charset="utf-8" />
     <meta name="author" content="Stéphane Dray" />
-    <meta name="date" content="2024-01-08" />
+    <meta name="date" content="2026-01-19" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -22,7 +22,7 @@ class: center, middle, inverse, title-slide
 ### Stéphane Dray
 ]
 .date[
-### 2024-01-08
+### 2026-01-19
 ]
 
 ---
@@ -49,7 +49,7 @@ class: center, middle, inverse, title-slide
 class:
 # Introduction
 
-```r
+``` r
 library(ade4)
 library(adegraphics)
 adegpar(paxes.draw = TRUE, pbackground.col = "lightgrey",
@@ -93,7 +93,7 @@ Describe the information contained in the table:
 
 ---
 
-```r
+``` r
 pca_fish &lt;- dudi.pca(doubs$fish, scale = FALSE, scannf = FALSE)
 biplot(pca_fish, ppoints.col = "blue", row.plabel.cex = 0,
     posieig = "none")
@@ -103,7 +103,7 @@ biplot(pca_fish, ppoints.col = "blue", row.plabel.cex = 0,
 
 ---
 
-```r
+``` r
 s.value(doubs$xy, doubs$fish[, 1:16], centerpar = TRUE,
     symbol = "circle", plegend.drawKey = FALSE, paxes.draw = FALSE)
 ```
@@ -112,7 +112,7 @@ s.value(doubs$xy, doubs$fish[, 1:16], centerpar = TRUE,
 
 ---
 
-```r
+``` r
 s.value(doubs$xy, pca_fish$li, symbol = "circle",
     paxes.draw = FALSE)
 ```
@@ -187,7 +187,7 @@ and interpret the structures with the second table using simple tools
 ### Graphics
 
 
-```r
+``` r
 s.value(pca_fish$li,
     scale(doubs$env$dfs))
 ```
@@ -200,7 +200,7 @@ s.value(pca_fish$li,
 ### Correlation
 
 
-```r
+``` r
 s1d.curve(pca_fish$li,
     p1.horizontal = FALSE,
     at = doubs$env$dfs)
@@ -208,7 +208,7 @@ s1d.curve(pca_fish$li,
 
 &lt;img src="fig/unnamed-chunk-3-1.svg" width="90%" style="display: block; margin: auto;" /&gt;
 
-```r
+``` r
 cor(pca_fish$li, doubs$env$dfs)
 ```
 
@@ -224,7 +224,7 @@ cor(pca_fish$li, doubs$env$dfs)
 ### Correlation
 
 
-```r
+``` r
 s.corcircle(cor(doubs$env,
     pca_fish$li))
 ```
@@ -234,7 +234,7 @@ s.corcircle(cor(doubs$env,
 .pull-right[
 ### Regression
 
-```r
+``` r
 lm1 &lt;- lm(as.matrix(pca_fish$li) ~
     as.matrix(doubs$env))
 s.arrow(coefficients(lm1)[-1,
@@ -263,7 +263,7 @@ Simple ordination
 
 ---
 
-```r
+``` r
 conc &lt;- cbind(doubs$fish, doubs$env)
 biplot(dudi.pca(conc, scannf = FALSE), col.plabel.col = rep(c(2,
     4), c(27, 11)))
@@ -327,7 +327,7 @@ A compromise between canonical correlation analysis, and the two PCAs:
 
 ---
 
-```r
+``` r
 pca_env &lt;- dudi.pca(doubs$env, scannf = FALSE)
 coi &lt;- coinertia(pca_fish, pca_env, scannf = FALSE)
 plot(coi)
@@ -337,7 +337,7 @@ plot(coi)
 
 ---
 
-```r
+``` r
 rt.coi &lt;- randtest(coi)
 plot(rt.coi)
 ```
@@ -366,7 +366,7 @@ This framework encompasses:
 
 ---
 
-```r
+``` r
 rda1 &lt;- pcaiv(pca_fish, doubs$env, scannf = FALSE)
 plot(rda1)
 ```
@@ -375,7 +375,7 @@ plot(rda1)
 
 ---
 
-```r
+``` r
 rt.rda &lt;- randtest(rda1)
 plot(rt.rda)
 ```
@@ -408,9 +408,9 @@ The aim is to maximize the separation between the groups
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

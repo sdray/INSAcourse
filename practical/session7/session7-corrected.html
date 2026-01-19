@@ -4,7 +4,7 @@
     <title>Raw-data and distance based methods</title>
     <meta charset="utf-8" />
     <meta name="author" content="Stéphane Dray" />
-    <meta name="date" content="2024-01-08" />
+    <meta name="date" content="2026-01-19" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="custom.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 ### Stéphane Dray
 ]
 .date[
-### 2024-01-08
+### 2026-01-19
 ]
 
 ---
@@ -122,7 +122,7 @@ class: center, middle, inverse, title-slide
 ## Distance vs Raw
 - Raw-data methods produce information on both individuals and variables when distance-based methods focus only on individuals
 
-```r
+``` r
 library(ade4)
 library(adegraphics)
 data(doubs)
@@ -131,7 +131,7 @@ pco &lt;- dudi.pco(dist(scale(doubs$env)), scannf = FALSE)
 ```
 .pull-left[
 
-```r
+``` r
 scatter(pca, main = "PCA")
 ```
 
@@ -140,7 +140,7 @@ scatter(pca, main = "PCA")
 
 .pull-left[
 
-```r
+``` r
 scatter(pco, main = "PCO")
 ```
 
@@ -152,7 +152,7 @@ scatter(pco, main = "PCO")
 
 
 
-```r
+``` r
 x
 ```
 
@@ -166,7 +166,7 @@ x
 
 .pull-left[
 
-```r
+``` r
 ## Euclidean
 round(dist(x), 2)
 ```
@@ -180,7 +180,7 @@ round(dist(x), 2)
 ]
 .pull-right[
 
-```r
+``` r
 ## Jaccard
 round(dist.binary(x, method = 1), 2)
 ```
@@ -203,7 +203,7 @@ For the univariate case, Euclidean distance is `\(d_{ij}=\sqrt{(x_i-x_j)^2}\)` a
 
 `$$var(\mathbf{x}) = \frac{1}{n}\sum_{i=1}^{n}{(x_i-\bar{x})^2}=\frac{1}{2n^2}\sum_{i=1}^{n}\sum_{j=1}^{n}{d_{ij}^2}$$`
 
-```r
+``` r
 x &lt;- rnorm(10)
 var(x) * 9/10
 ```
@@ -212,7 +212,7 @@ var(x) * 9/10
 ## [1] 0.9402963
 ```
 
-```r
+``` r
 sum(as.matrix(dist(x))^2)/(2 * 10^2)
 ```
 
@@ -242,7 +242,7 @@ When using Euclidean distances, we have:
 - Permutational Distance-based Multivariate Analysis of Variance &lt;span style="color:#F97B64"&gt; `\(\Leftrightarrow\)` &lt;/span&gt; Permutation test of Between-Class Analysis
 ---
 
-```r
+``` r
 ## Answer 2
 library(ade4)
 library(adegraphics)
@@ -272,9 +272,9 @@ randtest(bca1)
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

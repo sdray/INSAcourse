@@ -4,7 +4,7 @@
     <title>Multiple Correspondence Analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Stéphane Dray" />
-    <meta name="date" content="2024-01-08" />
+    <meta name="date" content="2026-01-19" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="custom.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 ### Stéphane Dray
 ]
 .date[
-### 2024-01-08
+### 2026-01-19
 ]
 
 ---
@@ -98,7 +98,7 @@ $$
 We consider the `meaudret` data set
 
 
-```r
+``` r
 library(ade4)
 library(adegraphics)
 data(meaudret)
@@ -109,7 +109,7 @@ names(meaudret)
 ## [1] "env"       "design"    "spe"       "spe.names"
 ```
 
-```r
+``` r
 dim(meaudret$env)
 ```
 
@@ -117,7 +117,7 @@ dim(meaudret$env)
 ## [1] 20  9
 ```
 
-```r
+``` r
 names(meaudret$env)
 ```
 
@@ -130,7 +130,7 @@ names(meaudret$env)
 The data set contains an environmental table with 20 measurements of 9 environmental variables. For this example, quantitative variables are transformed into categorical variables:
 
 
-```r
+``` r
 env.categ &lt;- apply(meaudret$env, 2, cut, breaks = 3,
     labels = c("low", "med", "hi"))
 env.categ &lt;- as.data.frame(env.categ, stringsAsFactors = TRUE)
@@ -157,7 +157,7 @@ We want to know
   - 😄 It allows to detect non-linear relationships (order of categories is lost)
   
 
-```r
+``` r
 plot(meaudret$env[, 1] ~ env.categ[, 1], ylab = "Quantitative Temp",
     xlab = "Qualitative Temp")
 ```
@@ -223,7 +223,7 @@ This quantity is the mean of correlation ratios computed for all variables.
 ## Arguments
 
 
-```r
+``` r
 args(dudi.acm)
 ```
 
@@ -236,19 +236,20 @@ args(dudi.acm)
 * `scannf` and `nf` allow to set the number of dimensions to interpret
 
 
-```r
+``` r
 mca.meau &lt;- dudi.acm(env.categ, scannf = FALSE)
 ```
 ---
 ## Returned values
 
 
-```r
+``` r
 names(mca.meau)
 ```
 
 ```
-##  [1] "tab"  "cw"   "lw"   "eig"  "rank" "nf"   "l1"   "co"   "li"   "c1"   "call" "cr"
+##  [1] "tab"  "cw"   "lw"   "eig"  "rank" "nf"   "l1"   "co"  
+##  [9] "li"   "c1"   "call" "cr"
 ```
 It returns an object of class `dudi` containing:
 
@@ -275,7 +276,7 @@ In the second type of interpretation, MCA finds normed coordinates for individua
 
 .pull-left[
 
-```r
+``` r
 s.label(mca.meau$co)
 ```
 
@@ -283,7 +284,7 @@ s.label(mca.meau$co)
 ]
 .pull-right[
 
-```r
+``` r
 s.label(mca.meau$li)
 ```
 
@@ -295,7 +296,7 @@ s.label(mca.meau$li)
 
 .pull-left[
 
-```r
+``` r
 plot(mca.meau, col = TRUE)
 ```
 
@@ -304,7 +305,7 @@ plot(mca.meau, col = TRUE)
 
 .pull-right[
 
-```r
+``` r
 mca.meau$cr
 ```
 
@@ -325,7 +326,7 @@ mca.meau$cr
 # Inertia statistics
 
 
-```r
+``` r
 summary(mca.meau)
 ```
 
@@ -373,7 +374,7 @@ Write a report with Rmarkdown
 We will analyze the `doubs` data set (see `?doubs`)
 
 
-```r
+``` r
 library(ade4)
 library(adegraphics)
 data(doubs)
@@ -384,18 +385,19 @@ names(doubs)
 ## [1] "env"     "fish"    "xy"      "species"
 ```
 
-```r
+``` r
 names(doubs$env)
 ```
 
 ```
-##  [1] "dfs" "alt" "slo" "flo" "pH"  "har" "pho" "nit" "amm" "oxy" "bdo"
+##  [1] "dfs" "alt" "slo" "flo" "pH"  "har" "pho" "nit" "amm" "oxy"
+## [11] "bdo"
 ```
 ---
 # Tranformation into categorical variables
 
 
-```r
+``` r
 fenv &lt;- apply(doubs$env, 2, cut, breaks = 4, labels = 1:4)
 fenv &lt;- as.data.frame(fenv, stringsAsFactors = TRUE)
 ```
@@ -406,7 +408,7 @@ fenv &lt;- as.data.frame(fenv, stringsAsFactors = TRUE)
 * Display the barplot of eigenvalues
 
 
-```r
+``` r
 acm1 &lt;- dudi.acm(fenv, scannf = FALSE)
 screeplot(acm1, main = " ", xlab = " ")
 ```
@@ -418,7 +420,7 @@ screeplot(acm1, main = " ", xlab = " ")
 * Plot the results using the `plot` function
 
 
-```r
+``` r
 plot(acm1, col = TRUE)
 ```
 
@@ -430,7 +432,7 @@ plot(acm1, col = TRUE)
 * Interpret the maps to describe the environmental structure of the river
 
 
-```r
+``` r
 mypal &lt;- colorRampPalette(c("#EDF8FB", "#006D2C"))
 s.value(doubs$xy, acm1$li[, 1:2], pgrid.draw = FALSE,
     porigin.draw = FALSE, method = "size", symbol = "circle",
@@ -445,7 +447,7 @@ s.value(doubs$xy, acm1$li[, 1:2], pgrid.draw = FALSE,
 
 
 
-```r
+``` r
 acm1$cr
 ```
 
@@ -469,7 +471,7 @@ acm1$cr
 The generic function `score` provides an optimal representation of the maximized criteria
 
 
-```r
+``` r
 score(acm1, type = "boxplot")
 ```
 
@@ -479,19 +481,19 @@ score(acm1, type = "boxplot")
 
 * Build a table mixing quantitative and categorical variables
 
-```r
+``` r
 menv &lt;- cbind(fenv[, 1:6], doubs$env[, 7:11])
 ```
 * Perform Hill-Smith analysis
 
-```r
+``` r
 hs1 &lt;- dudi.hillsmith(menv, scannf = FALSE)
 ```
 ---
 # Graphical representation
 
 
-```r
+``` r
 score(hs1, type = "boxplot")
 ```
 
@@ -500,9 +502,9 @@ score(hs1, type = "boxplot")
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
