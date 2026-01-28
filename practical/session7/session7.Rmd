@@ -219,7 +219,7 @@ When using Euclidean distance, several raw- and distance-based analysis would pr
 3. Perform the principal component analysis (`dudi.pca`) and principal coordinates analysis (`dudi.pco`) using Euclidean distances (`dist`) on faunistic data. Compare the outputs and conclude.
 4. Transform the data into presence-absence (`ifelse(meaudret$spe>0, 1, 0)`). Peform principal coordinates analysis (`dudi.pco`) using Euclidean (`dist`) and Jaccard distances (`dist.binary`). Compare the results.
 5. Perform the between-class analysis (`bca`) and distance-based RDA (`vegan::dbrda`) using Euclidean distances using the factor `meaudret$design$season` as an exploratory variable. Compare the results (be aware that `vegan` use $\frac{1}{n-1}$ to compute variances while `ade4` uses $\frac{1}{n}$).
-6. Look at the percentage of variation explained by the between-class analysis (stored in the object). Perform permutational multivariate analysis of variance with the function `vegan::adonis` using the Euclidean distances. Compare
+6. Look at the percentage of variation explained by the between-class analysis (stored in the object). Perform permutational multivariate analysis of variance with the function `vegan::adonis2` using the Euclidean distances. Compare
 
 ---
 ## Summary
@@ -247,10 +247,10 @@ pco.meau1 <- dudi.pco(dist(meau01), scannf = FALSE)
 pco.meau2 <- dudi.pco(dist.binary(meau01, method = 1), scannf = FALSE)
 cbindADEg(s.class(pco.meau1$li, meaudret$design$season, col = TRUE), s.class(pco.meau2$li, meaudret$design$season, col = TRUE))
 ## Answer 5
-bca1 <- bca(pco.meau, meaudret$design$season, scannf = FALSE)
+bca1 <- bca(pca.meau, meaudret$design$season, scannf = FALSE)
 dbrda1 <- vegan::dbrda(dist(meaudret$spe)~meaudret$design$season)
 dbrda1$CCA$eig * (nrow(meaudret$spe) - 1) / nrow(meaudret$spe) - bca1$eig ## Equivalence between the two analyses
 ## Answer 6
-vegan::adonis(dist(meaudret$spe)~meaudret$design$season)
+vegan::adonis2(dist(meaudret$spe)~meaudret$design$season)
 randtest(bca1)
 ```
